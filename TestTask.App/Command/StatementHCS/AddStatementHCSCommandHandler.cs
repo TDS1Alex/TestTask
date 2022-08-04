@@ -11,16 +11,13 @@ namespace TestTask.App.Command.StatementHCS
     public class AddStatementHCSCommandHandler : IRequestHandler<AddStatementHCSCommand, Result>
     {
         private readonly IStorage _storage;
-
-        public AddStatementHCSCommandHandler(IStorage storage)
-        {
-            _storage = storage;
-        }
+        public AddStatementHCSCommandHandler(IStorage storage) => _storage = storage;     
 
         public async Task<Result> Handle(AddStatementHCSCommand request, CancellationToken cancellationToken)
         {
             var statement = new ApplicationHCS()
             {
+                Id = request.Id,
                 FIOApplicant = request.FIOApplicant,
                 PassportInfo = request.PassportInfo,
                 DateBirth = request.DateBirth,

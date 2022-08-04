@@ -11,21 +11,24 @@ using TestTask.Storage;
 
 namespace TestTask.App.Query.StatementHCS
 {
-    public class StatementHCSListQueryHandler : IRequestHandler<StatementHCSListQuery, ListDto<ApplicantDto>>
+    public class StatementHCSListQueryHandler: IRequestHandler<StatementSPListQuery, ListDto<ApplicantDto>>
     {
         private readonly IStorage _storage;
         public StatementHCSListQueryHandler(IStorage storage) => _storage = storage;
 
-        public async Task<ListDto<ApplicantDto>> Handle(StatementHCSListQuery request, CancellationToken cancellationToken)
+        public async Task<ListDto<ApplicantDto>> Handle(StatementSPListQuery request, CancellationToken cancellationToken)
         {
-            var statements = _storage.ApplicationHCS.ToList();
+            var statementsHCS = _storage.ApplicationHCS.ToList();
 
-            var result = statements.Select(statement => new ApplicantDto()
+            var result = statementsHCS.Select(statement => new ApplicantDto()
             {
                 FIOApplicant = statement.FIOApplicant,
+                PassportInfo = statement.PassportInfo,
                 DateBirth = statement.DateBirth,
                 FIOChildOfApplicant = statement.FIOChildOfApplicant,
+                BirthCertificate = statement.BirthCertificate,
                 DateBirthCildOfApplicant = statement.DateBirthCildOfApplicant,
+                AvailabilityOfBenefits = statement.AvailabilityOfBenefits
             }).ToArray();
  
             var list = new ListDto<ApplicantDto>

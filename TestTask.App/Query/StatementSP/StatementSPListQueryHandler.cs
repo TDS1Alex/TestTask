@@ -9,7 +9,7 @@ using MediatR;
 using TestTask.App.Dtos;
 using TestTask.Storage;
 
-namespace TestTask.App.Query.StatementSP
+namespace TestTask.App.Query.StatementHCS
 {
     public class StatementSPListQueryHandler : IRequestHandler<StatementSPListQuery, ListDto<ApplicantDto>>
     {
@@ -23,17 +23,20 @@ namespace TestTask.App.Query.StatementSP
             var result = statements.Select(statement => new ApplicantDto()
             {
                 FIOApplicant = statement.FIOApplicant,
+                PassportInfo = statement.PassportInfo,
                 DateBirth = statement.DateBirth,
                 FIOChildOfApplicant = statement.FIOChildOfApplicant,
+                BirthCertificate = statement.BirthCertificate,
                 DateBirthCildOfApplicant = statement.DateBirthCildOfApplicant,
+                BankAccountNumber = statement.BankAccountNumber
             }).ToArray();
-
+ 
             var list = new ListDto<ApplicantDto>
             {
                 Count = result.Length,
                 Items = result
             };
-
+            
             return list;
         }
     }

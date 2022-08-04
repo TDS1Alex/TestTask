@@ -5,6 +5,7 @@ namespace TestTask.App.Command.StatementSP
 {
     public class AddStatementSPCommand: IRequest<Result>
     {
+        public int Id { get; set; }
         public string FIOApplicant { get; set; }
         public string PassportInfo { get; set; }
         public int DateBirth { get; set; }
