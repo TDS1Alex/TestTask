@@ -3,7 +3,7 @@ using TestTask.App.Dtos;
 
 namespace TestTask.App.Command
 {
-    public class AddStatementCommand: IRequest<Result>
+    public class AddStatementHCSCommand: IRequest<Result>
     {
         public string FIOApplicant { get; set; }
         public string PassportInfo { get; set; }

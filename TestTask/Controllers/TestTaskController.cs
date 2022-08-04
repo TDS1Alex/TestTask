@@ -18,7 +18,7 @@ namespace TestTask.Controllers
         public TestTaskController(IMediator mediator) => _mediator = mediator;
 
         [HttpPost("add")]
-        public async Task<Result> Add([FromBody] AddStatementCommand query)
+        public async Task<Result> Add([FromBody] AddStatementHCSCommand query)
         {
             return await _mediator.Send(query);
         }
