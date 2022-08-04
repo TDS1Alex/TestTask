@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MediatR;
-
 using TestTask.App.Dtos;
 
-namespace TestTask.App.Query
+namespace TestTask.App.Query.StatementHCS
 {
-    public class StatementListQuery : IRequest<ListDto<ApplicantDto>>
+    public class StatementHCSListQuery : IRequest<ListDto<ApplicantDto>>
     {
         public string FIOApplicant { get; set; }
         public int DateBirth { get; set; }

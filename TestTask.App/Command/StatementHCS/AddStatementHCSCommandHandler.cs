@@ -8,11 +8,11 @@ using TestTask.Domain;
 
 namespace TestTask.App.Command.StatementHCS
 {
-    public class AddStatementSPCommandHandler : IRequestHandler<AddStatementHCSCommand, Result>
+    public class AddStatementHCSCommandHandler : IRequestHandler<AddStatementHCSCommand, Result>
     {
         private readonly IStorage _storage;
 
-        public AddStatementSPCommandHandler(IStorage storage)
+        public AddStatementHCSCommandHandler(IStorage storage)
         {
             _storage = storage;
         }
