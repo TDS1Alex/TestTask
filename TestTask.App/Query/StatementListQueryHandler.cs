@@ -13,6 +13,5 @@ namespace TestTask.App.Query
 {
     public class StatementListQueryHandler 
     {
-        
     }
 }

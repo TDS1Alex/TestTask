@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using TestTask.App.Dtos;
 
-namespace TestTask.App.Command.StatementHCS
+namespace TestTask.App.Command.StatementSP
 {
-    public class AddStatementHCSCommand: IRequest<Result>
+    public class AddStatementSPCommand: IRequest<Result>
     {
         public string FIOApplicant { get; set; }
         public string PassportInfo { get; set; }
@@ -11,6 +11,6 @@ namespace TestTask.App.Command.StatementHCS
         public string FIOChildOfApplicant { get; set; }
         public string BirthCertificate { get; set; }
         public int DateBirthCildOfApplicant { get; set; }
-        public string AvailabilityOfBenefits { get; set; }
+        public int BankAccountNumber { get; set; }
     }
 }

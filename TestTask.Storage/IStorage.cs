@@ -5,8 +5,8 @@ namespace TestTask.Storage
 {
     public interface IStorage
     {
-        DbSet<ApplicationHCS> Applicant { get; set; }
-
+        DbSet<ApplicationHCS> ApplicationHCS { get; set; }
+        DbSet<ApplicationSP> ApplicationSP { get; set; }
         void SaveChange();
     }
 }

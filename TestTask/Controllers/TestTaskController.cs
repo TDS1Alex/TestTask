@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using TestTask.App.Command;
 using TestTask.App.Query;
 using TestTask.App.Dtos;
+using TestTask.App.Command.StatementHCS;
+using TestTask.App.Command.StatementSP;
 
 namespace TestTask.Controllers
 {
@@ -16,6 +18,12 @@ namespace TestTask.Controllers
     {
         private readonly IMediator _mediator;
         public TestTaskController(IMediator mediator) => _mediator = mediator;
+
+        [HttpPost("add")]
+        public async Task<Result> Add([FromBody] AddStatementSPCommand query)
+        {
+            return await _mediator.Send(query);
+        }
 
         [HttpPost("add")]
         public async Task<Result> Add([FromBody] AddStatementHCSCommand query)

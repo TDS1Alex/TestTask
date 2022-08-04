@@ -6,9 +6,9 @@ using TestTask.Storage;
 using TestTask.App.Dtos;
 using TestTask.Domain;
 
-namespace TestTask.App.Command.StatementHCS
+namespace TestTask.App.Command.StatementSP
 {
-    public class AddStatementSPCommandHandler : IRequestHandler<AddStatementHCSCommand, Result>
+    public class AddStatementSPCommandHandler : IRequestHandler<AddStatementSPCommand, Result>
     {
         private readonly IStorage _storage;
 
@@ -17,9 +17,9 @@ namespace TestTask.App.Command.StatementHCS
             _storage = storage;
         }
 
-        public async Task<Result> Handle(AddStatementHCSCommand request, CancellationToken cancellationToken)
+        public async Task<Result> Handle(AddStatementSPCommand request, CancellationToken cancellationToken)
         {
-            var statement = new ApplicationHCS()
+            var statement = new ApplicationSP()
             {
                 FIOApplicant = request.FIOApplicant,
                 PassportInfo = request.PassportInfo,
@@ -27,10 +27,10 @@ namespace TestTask.App.Command.StatementHCS
                 FIOChildOfApplicant = request.FIOChildOfApplicant,
                 BirthCertificate = request.BirthCertificate,
                 DateBirthCildOfApplicant = request.DateBirthCildOfApplicant,
-                AvailabilityOfBenefits = request.AvailabilityOfBenefits
+                BankAccountNumber = request.BankAccountNumber
             };
 
-            _storage.ApplicationHCS.Add(statement);
+            _storage.ApplicationSP.Add(statement);
             _storage.SaveChange();
 
             return new Result() { Status = HttpStatus.Ok };
