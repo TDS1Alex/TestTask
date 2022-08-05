@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 using TestTask.App.Command;
 using TestTask.App.Query;
@@ -40,6 +41,18 @@ namespace TestTask.Controllers
 
         [HttpPost("listSP")]
         public async Task<ListDto<ApplicantDto>> List([FromBody] StatementSPListQuery query)
+        {
+            return await _mediator.Send(query);
+        }
+
+        [HttpPost("getSP")]
+        public async Task<IEnumerable<ApplicantDto>> Get([FromBody] StatementSPQuery query)
+        {
+            return await _mediator.Send(query);
+        }
+
+        [HttpPost("getHCS")]
+        public async Task<IEnumerable<ApplicantDto>> Get([FromBody] StatementHCSQuery query)
         {
             return await _mediator.Send(query);
         }

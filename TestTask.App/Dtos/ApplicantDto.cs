@@ -8,6 +8,7 @@ namespace TestTask.App.Dtos
 {
     public class ApplicantDto
     {
+        public int Id { get; set; }
         public string FIOApplicant { get; set; }
         public string PassportInfo { get; set; }
         public int DateBirth { get; set; }

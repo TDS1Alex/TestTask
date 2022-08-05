@@ -30,17 +30,28 @@ namespace TestTask
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
             services.AddMediatR(typeof(Startup));
             services.AddMediatR(Assembly.GetExecutingAssembly(), typeof(IStorage).Assembly, typeof(IHttpContextAccessor).Assembly);
+
             services.AddDbContextPool<IStorage, DbStorage>(options =>
             {
                 options.UseSqlServer(@"Server=(localdb)\\mssqllocaldb; Database=testdb; Trusted_Connection=True;");
             }, 16);
+
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(config=>
+            {
+                config.RoutePrefix = string.Empty;
+                config.SwaggerEndpoint("swagger/v1/swagger.json", "Notes API");
+            });
+            
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -49,22 +60,18 @@ namespace TestTask
             {
                 app.UseExceptionHandler("/Error");
             }
-
             app.UseStaticFiles();
             if (!env.IsDevelopment())
             {
                 app.UseSpaStaticFiles();
             }
-
             app.UseRouting();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
-
             app.UseSpa(spa =>
             {
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
