@@ -11,11 +11,7 @@ namespace TestTask.App.Command.StatementSP
     public class AddStatementSPCommandHandler : IRequestHandler<AddStatementSPCommand, Result>
     {
         private readonly IStorage _storage;
-
-        public AddStatementSPCommandHandler(IStorage storage)
-        {
-            _storage = storage;
-        }
+        public AddStatementSPCommandHandler(IStorage storage) => _storage = storage;
 
         public async Task<Result> Handle(AddStatementSPCommand request, CancellationToken cancellationToken)
         {

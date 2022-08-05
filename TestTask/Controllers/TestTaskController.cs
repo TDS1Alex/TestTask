@@ -8,6 +8,7 @@ using TestTask.App.Query;
 using TestTask.App.Dtos;
 using TestTask.App.Command.StatementHCS;
 using TestTask.App.Command.StatementSP;
+using TestTask.App.Query.StatementHCS;
 
 namespace TestTask.Controllers
 {
@@ -19,20 +20,26 @@ namespace TestTask.Controllers
         private readonly IMediator _mediator;
         public TestTaskController(IMediator mediator) => _mediator = mediator;
 
-        [HttpPost("add")]
+        [HttpPost("addSP")]
         public async Task<Result> Add([FromBody] AddStatementSPCommand query)
         {
             return await _mediator.Send(query);
         }
 
-        [HttpPost("add")]
+        [HttpPost("addHCS")]
         public async Task<Result> Add([FromBody] AddStatementHCSCommand query)
         {
             return await _mediator.Send(query);
         }
 
-        [HttpPost("list")]
-        public async Task<ListDto<ApplicantDto>> List([FromBody] StatementListQuery query)
+        [HttpPost("listHCS")]
+        public async Task<ListDto<ApplicantDto>> List([FromBody] StatementHCSListQuery query)
+        {
+            return await _mediator.Send(query);
+        }
+
+        [HttpPost("listSP")]
+        public async Task<ListDto<ApplicantDto>> List([FromBody] StatementSPListQuery query)
         {
             return await _mediator.Send(query);
         }

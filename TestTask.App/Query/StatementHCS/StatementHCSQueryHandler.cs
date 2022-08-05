@@ -11,18 +11,17 @@ using TestTask.Storage;
 
 namespace TestTask.App.Query.StatementHCS
 {
-    public class StatementHCSListQueryHandler: IRequestHandler<StatementHCSListQuery, ListDto<ApplicantDto>>
+    public class StatementHCSQueryHandler: IRequestHandler<StatementHCSQuery, IEnumerable<ApplicantDto>>
     {
         private readonly IStorage _storage;
-        public StatementHCSListQueryHandler(IStorage storage) => _storage = storage;
+        public StatementHCSQueryHandler(IStorage storage) => _storage = storage;
 
-        public async Task<ListDto<ApplicantDto>> Handle(StatementHCSListQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<ApplicantDto>> Handle(StatementHCSQuery request, CancellationToken cancellationToken)
         {
             var statementsHCS = _storage.ApplicationHCS.ToList();
 
             var result = statementsHCS.Select(statement => new ApplicantDto()
             {
-                Id = statement.Id,
                 FIOApplicant = statement.FIOApplicant,
                 PassportInfo = statement.PassportInfo,
                 DateBirth = statement.DateBirth,
@@ -30,15 +29,9 @@ namespace TestTask.App.Query.StatementHCS
                 BirthCertificate = statement.BirthCertificate,
                 DateBirthCildOfApplicant = statement.DateBirthCildOfApplicant,
                 AvailabilityOfBenefits = statement.AvailabilityOfBenefits
-            }).ToArray();
- 
-            var list = new ListDto<ApplicantDto>
-            {
-                Count = result.Length,
-                Items = result
-            };
+            });
             
-            return list;
+            return result;
         }
     }
 }
