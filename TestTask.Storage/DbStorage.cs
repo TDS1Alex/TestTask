@@ -7,6 +7,7 @@ namespace TestTask.Storage
     {
         public DbSet<ApplicationHCS> ApplicationHCS { get; set; } = null!;
         public DbSet<ApplicationSP> ApplicationSP { get; set; } = null!;
+        public DbSet<Application> Application { get; set; } = null!;
 
         public DbStorage(DbContextOptions<DbStorage> options)
             : base(options) { Database.EnsureCreated(); }

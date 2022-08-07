@@ -7,5 +7,7 @@ using TestTask.App.Dtos;
 namespace TestTask.App.Query.StatementHCS
 {
     public class StatementHCSListQuery : IRequest<ListDto<ApplicantDto>>
-    {}
+    {
+        public int Id { get; set; }
+    }
 }

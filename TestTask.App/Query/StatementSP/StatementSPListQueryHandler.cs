@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-
+using Microsoft.EntityFrameworkCore;
 using TestTask.App.Dtos;
 using TestTask.Storage;
 
@@ -18,7 +18,7 @@ namespace TestTask.App.Query.StatementHCS
 
         public async Task<ListDto<ApplicantDto>> Handle(StatementSPListQuery request, CancellationToken cancellationToken)
         {
-            var statements = _storage.ApplicationSP.ToList();
+            var statements = _storage.ApplicationSP.Include(n => n.Id == request.Id);
 
             var result = statements.Select(statement => new ApplicantDto()
             {

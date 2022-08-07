@@ -17,7 +17,6 @@ namespace TestTask.App.Command.StatementSP
         {
             var statement = new ApplicationSP()
             {
-                Id = request.Id,
                 FIOApplicant = request.FIOApplicant,
                 PassportInfo = request.PassportInfo,
                 DateBirth = request.DateBirth,

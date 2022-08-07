@@ -17,7 +17,6 @@ namespace TestTask.App.Command.StatementHCS
         {
             var statement = new ApplicationHCS()
             {
-                Id = request.Id,
                 FIOApplicant = request.FIOApplicant,
                 PassportInfo = request.PassportInfo,
                 DateBirth = request.DateBirth,

@@ -9,6 +9,8 @@ using Microsoft.Extensions.Hosting;
 using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using TestTask.Storage;
+using TestTask.App.Command.StatementHCS;
+using System.Data.SqlClient;
 
 namespace TestTask
 {
@@ -32,26 +34,26 @@ namespace TestTask
             });
 
             services.AddMediatR(typeof(Startup));
-            services.AddMediatR(Assembly.GetExecutingAssembly(), typeof(IStorage).Assembly, typeof(IHttpContextAccessor).Assembly);
+            services.AddMediatR(Assembly.GetExecutingAssembly(), typeof(IStorage).Assembly, typeof(IHttpContextAccessor).Assembly, typeof(AddStatementHCSCommand).Assembly);
 
             services.AddDbContextPool<IStorage, DbStorage>(options =>
             {
-                options.UseSqlServer(@"Server=(localdb)\\mssqllocaldb; Database=testdb; Trusted_Connection=True;");
-            }, 16);
-
+                options.UseSqlServer(@"Data Source = DESKTOP-DR7P0IP; Database = testdb; Trusted_Connection = True;");
+            });
+            
             services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseSwagger();
-            app.UseSwaggerUI(config=>
-            {
-                config.RoutePrefix = string.Empty;
-                config.SwaggerEndpoint("swagger/v1/swagger.json", "Notes API");
-            });
-            
+            //app.UseSwagger();
+            //app.UseSwaggerUI(config =>
+            //{
+            //    config.RoutePrefix = "swagger";
+            //    config.SwaggerEndpoint("swagger/v1/swagger.json", "Notes API");
+            //});
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
