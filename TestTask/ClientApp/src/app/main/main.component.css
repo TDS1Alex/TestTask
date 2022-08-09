@@ -1,0 +1,11 @@
+h1{
+   text-align: center;
+   background-color: white;
+   box-shadow: 0 2px 5px #333333;
+   height: 10vh;
+}
+
+body{
+   height: 90vh;
+   padding: 2%;
+}

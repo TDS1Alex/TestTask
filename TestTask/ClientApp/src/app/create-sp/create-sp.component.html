@@ -1,1 +1,46 @@
-<p>create-sp works!</p>
+<header>
+    <h1>Регистрация заявления для получения субсидии на ИП</h1>
+</header>
+
+<body>
+    <p>Введите следующие данные:</p>
+<ul>
+    <li>
+        <p><input type="text" #FIOApplicant
+            required placeholder="ФИО заявителя" size="40"></p>       
+    </li>
+    <li>
+        <p><input type="text" #PassportInfo
+            required placeholder="Серия и номер паспорта" size="40"></p> 
+    </li>
+    <li>       
+        <p><input type="text" #DateBirth
+            required placeholder="Дата рождения (Год-месяц-день)" size="40"> Пример: 1989-08-16</p>
+    </li>
+    <li>
+        <p><input type="text" #FIOChildOfApplicant
+            required placeholder="ФИО вашего ребенка" size="40"></p> 
+    </li>
+    <li>
+        <p><input type="text" #BirthCertificate
+            required placeholder="Свидетельство о рождении" size="40"></p> 
+    </li>
+    <li>
+        <p><input type="text" #DateBirthCildOfApplicant
+            required placeholder="Дата рождения ребенка (Год-месяц-день)" size="40"></p> 
+    </li>
+    <li>
+        <p><input type="text" required #BankAccountNumber
+            placeholder="Номер счета в банке" size="40"></p> 
+    </li>
+</ul>
+<div>
+    <div class="button-zone">
+        <a class="button" (click)="addSP(FIOApplicant, PassportInfo, DateBirth, FIOChildOfApplicant, 
+        BirthCertificate, DateBirthCildOfApplicant, BankAccountNumber)">Сохранить</a>
+    </div>  
+    <div class="button-zone">
+        <a class="button" routerLink="">Главная</a>
+    </div>  
+</div>
+</body>

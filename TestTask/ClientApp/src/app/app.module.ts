@@ -21,7 +21,7 @@ import { CreateSpComponent } from './create-sp/create-sp.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: "main", component: MainComponent },
+      { path: "", component: MainComponent },
       { path: "create_hcs", component: CreateHcsComponent },
       { path: "create_sp", component: CreateSpComponent }
     ])
