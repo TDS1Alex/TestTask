@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using TestTask.App.Dtos;
 using TestTask.Storage;
 
@@ -18,10 +14,11 @@ namespace TestTask.App.Query.StatementHCS
 
         public async Task<ListDto<ApplicantDto>> Handle(StatementSPListQuery request, CancellationToken cancellationToken)
         {
-            var statements = _storage.ApplicationSP.Include(n => n.Id == request.Id);
+            var statementsHCS = _storage.ApplicationSP.Where(n => n.BankAccountNumber != 0);
 
-            var result = statements.Select(statement => new ApplicantDto()
+            var result = statementsHCS.Select(statement => new ApplicantDto()
             {
+                Id = statement.Id,
                 FIOApplicant = statement.FIOApplicant,
                 PassportInfo = statement.PassportInfo,
                 DateBirth = statement.DateBirth,
@@ -30,7 +27,7 @@ namespace TestTask.App.Query.StatementHCS
                 DateBirthCildOfApplicant = statement.DateBirthCildOfApplicant,
                 BankAccountNumber = statement.BankAccountNumber
             }).ToArray();
- 
+
             var list = new ListDto<ApplicantDto>
             {
                 Count = result.Length,

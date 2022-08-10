@@ -1,27 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using TestTask.App.Dtos;
 using TestTask.Storage;
 
 namespace TestTask.App.Query.StatementHCS
 {
-    public class StatementSPQueryHandler : IRequestHandler<StatementSPQuery, IEnumerable<ApplicantDto>>
+    public class StatementSPQueryHandler : IRequestHandler<StatementSPQuery, ApplicantDto>
     {
         private readonly IStorage _storage;
         public StatementSPQueryHandler(IStorage storage) => _storage = storage;
 
-        public async Task<IEnumerable<ApplicantDto>> Handle(StatementSPQuery request, CancellationToken cancellationToken)
+        public async Task<ApplicantDto> Handle(StatementSPQuery request, CancellationToken cancellationToken)
         {
-            var statements = _storage.ApplicationSP.Include(n => n.Id == request.Id);
+            var statement = _storage.ApplicationSP.FirstOrDefault(n => n.Id == request.Id);
 
-            var result = statements.Select(statement => new ApplicantDto()
+            var result = new ApplicantDto()
             {
+                Id = statement.Id,
                 FIOApplicant = statement.FIOApplicant,
                 PassportInfo = statement.PassportInfo,
                 DateBirth = statement.DateBirth,
@@ -29,7 +26,7 @@ namespace TestTask.App.Query.StatementHCS
                 BirthCertificate = statement.BirthCertificate,
                 DateBirthCildOfApplicant = statement.DateBirthCildOfApplicant,
                 BankAccountNumber = statement.BankAccountNumber
-            });
+            };
 
             return result;
         }

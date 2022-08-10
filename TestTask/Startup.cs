@@ -50,7 +50,7 @@ namespace TestTask
             app.UseSwagger();
             app.UseSwaggerUI(config =>
             {
-                config.RoutePrefix = string.Empty;
+                config.RoutePrefix = "/swagger";
                 config.SwaggerEndpoint("swagger/v1/swagger.json", "Notes API");
             });
 
