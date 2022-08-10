@@ -1,6 +1,4 @@
-﻿
-using System.Linq;
-
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
@@ -17,10 +15,11 @@ namespace TestTask.App.Query.StatementHCS
 
         public async Task<ListDto<ApplicantDto>> Handle(StatementHCSListQuery request, CancellationToken cancellationToken)
         {
-            var statementsHCS = _storage.ApplicationHCS.Include(n => n.Id == request.Id);
+            var statementsHCS = _storage.ApplicationHCS.Where(n => n.AvailabilityOfBenefits != null);
 
             var result = statementsHCS.Select(statement => new ApplicantDto()
             {
+                Id = statement.Id,
                 FIOApplicant = statement.FIOApplicant,
                 PassportInfo = statement.PassportInfo,
                 DateBirth = statement.DateBirth,

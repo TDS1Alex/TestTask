@@ -11,9 +11,9 @@ namespace TestTask.Domain
         public int Id { get; set; }
         public string FIOApplicant { get; set; }
         public string PassportInfo { get; set; }
-        public string DateBirth { get; set; }
+        public DateTime DateBirth { get; set; }
         public string FIOChildOfApplicant { get; set; }
         public string BirthCertificate { get; set; }
-        public string DateBirthCildOfApplicant { get; set; }
+        public DateTime DateBirthCildOfApplicant { get; set; }
     }
 }

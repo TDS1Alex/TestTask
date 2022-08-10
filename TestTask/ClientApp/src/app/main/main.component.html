@@ -11,5 +11,30 @@
             <p>Ссылка на регистрацию заявления для получения субсидии на <a routerLink="/create_sp">ИП</a>.</p>
         </li>
     </ul>
-</body>
 
+    <p>Список завяителей на субсидии на оплату ЖКУ</p>
+    <table class="table">
+        <tr><td>ФИО заявителя</td><td>Пасспортные данные</td><td>Дата рождения</td>
+            <td>ФИО ребенка заявителя</td><td>Свидетельство о рождении</td>
+            <td>Дата рождения ребенка</td><td>Список льгот</td></tr>
+        @foreach (var item in Model)
+        {
+            <tr><td>@item.FIOApplicant</td><td>@item.PassportInfo</td><td>@item.DateBirth</td>
+                <td>@item.FIOChildOfApplicant</td><td>@item.BirthCertificate</td><td>@item.DateBirthCildOfApplicant</td>
+                <td>@item.AvailabilityOfBenefitsv</td></tr>
+        }
+    </table>
+
+    <p>Список завяителей на субсидии на ИП</p>
+    <table class="table">
+        <tr><td>ФИО заявителя</td><td>Пасспортные данные</td><td>Дата рождения</td>
+            <td>ФИО ребенка заявителя</td><td>Свидетельство о рождении</td>
+            <td>Дата рождения ребенка</td><td>Номер счета в банке</td></tr>
+        @foreach (var item in Model)
+        {
+            <tr><td>@item.FIOApplicant</td><td>@item.PassportInfo</td><td>@item.DateBirth</td>
+                <td>@item.FIOChildOfApplicant</td><td>@item.BirthCertificate</td><td>@item.DateBirthCildOfApplicant</td>
+                <td>@item.BankAccountNumber</td></tr>
+        }
+    </table>
+</body>

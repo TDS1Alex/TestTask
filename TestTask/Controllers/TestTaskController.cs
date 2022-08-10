@@ -52,7 +52,7 @@ namespace TestTask.Controllers
         }
 
         [HttpPost("getHCS")]
-        public async Task<IEnumerable<ApplicantDto>> Get([FromBody] StatementHCSQuery query)
+        public async Task<ApplicantDto> Get([FromBody] StatementHCSQuery query)
         {
             return await _mediator.Send(query);
         }
