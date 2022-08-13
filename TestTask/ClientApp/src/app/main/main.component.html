@@ -12,29 +12,63 @@
         </li>
     </ul>
 
-    <p>Список завяителей на субсидии на оплату ЖКУ</p>
+    <p>Список заявителей на субсидии на оплату ЖКУ (Число заявлений: {{applicationsHCS?.count}})</p>
     <table class="table">
-        <tr><td>ФИО заявителя</td><td>Пасспортные данные</td><td>Дата рождения</td>
-            <td>ФИО ребенка заявителя</td><td>Свидетельство о рождении</td>
-            <td>Дата рождения ребенка</td><td>Список льгот</td></tr>
-        @foreach (var item in Model)
-        {
-            <tr><td>@item.FIOApplicant</td><td>@item.PassportInfo</td><td>@item.DateBirth</td>
-                <td>@item.FIOChildOfApplicant</td><td>@item.BirthCertificate</td><td>@item.DateBirthCildOfApplicant</td>
-                <td>@item.AvailabilityOfBenefitsv</td></tr>
-        }
-    </table>
+        <thead>
+            <tr>
+                <td>№</td>
+                <td>ФИО заявителя</td>
+                <td>Паспортные данные</td>
+                <td>Дата рождения</td>
+                <td>ФИО ребенка заявителя</td>
+                <td>Свидетельство о рождении</td>
+                <td>Дата рождения ребенка</td>
+                <td>Список льгот</td>
+            </tr>
+        </thead>
 
-    <p>Список завяителей на субсидии на ИП</p>
+        <tbody>
+            <tr *ngFor="let app of applicationsHCS?.items">
+                <td>{{app?.id}}</td>
+                <td>{{app?.fioApplicant}}</td>
+                <td>{{app?.passportInfo}}</td>
+                <td>{{app?.dateBirth | date}}</td>
+                <td>{{app?.fioChildOfApplicant}}</td>
+                <td>{{app?.birthCertificate}}</td>
+                <td>{{app?.dateBirthCildOfApplicant | date}}</td>
+                <td>{{app?.availabilityOfBenefits}}</td>
+            </tr>
+        </tbody>
+
+    </table>  
+
+    <p>Список заявителей на субсидии на оплату ЖКУ (Число заявлений: {{applicationsSP?.count}})</p>
     <table class="table">
-        <tr><td>ФИО заявителя</td><td>Пасспортные данные</td><td>Дата рождения</td>
-            <td>ФИО ребенка заявителя</td><td>Свидетельство о рождении</td>
-            <td>Дата рождения ребенка</td><td>Номер счета в банке</td></tr>
-        @foreach (var item in Model)
-        {
-            <tr><td>@item.FIOApplicant</td><td>@item.PassportInfo</td><td>@item.DateBirth</td>
-                <td>@item.FIOChildOfApplicant</td><td>@item.BirthCertificate</td><td>@item.DateBirthCildOfApplicant</td>
-                <td>@item.BankAccountNumber</td></tr>
-        }
-    </table>
+        <thead>
+            <tr>
+                <td>№</td>
+                <td>ФИО заявителя</td>
+                <td>Паспортные данные</td>
+                <td>Дата рождения</td>
+                <td>ФИО ребенка заявителя</td>
+                <td>Свидетельство о рождении</td>
+                <td>Дата рождения ребенка</td>
+                <td>Номер счета в банке</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let app of applicationsSP?.items">
+                <td>{{app?.id}}</td>
+                <td>{{app?.fioApplicant}}</td>
+                <td>{{app?.passportInfo}}</td>
+                <td>{{app?.dateBirth | date}}</td>
+                <td>{{app?.fioChildOfApplicant}}</td>
+                <td>{{app?.birthCertificate}}</td>
+                <td>{{app?.dateBirthCildOfApplicant | date}}</td>
+                <td>{{app?.bankAccountNumber}}</td>
+            </tr>
+        </tbody>
+
+    </table>  
 </body>

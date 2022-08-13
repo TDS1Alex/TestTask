@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Console } from 'console';
-import { ApplicationHCS } from './application';
+import { Application } from './application';
 
 @Component({
   selector: 'app-main',
@@ -11,11 +10,25 @@ import { ApplicationHCS } from './application';
 
 export class MainComponent implements OnInit{
 
-  public list: ApplicationHCS[];
+  applicationsHCS: Array<Application[]>;
+  applicationsSP: Array<Application[]>;
+  
   constructor(private http: HttpClient){}
+  
+  ngOnInit(){
+    this.listHCS();
+    this.listSP();
+  }
 
-  ngOnInit(): void {
-    this.http.get<ApplicationHCS[]>('/test/listHcs')
-    .subscribe(list=>{this.list = list;})
+  listHCS(){
+    return this.http.post('/test/listHCS', {})
+    .subscribe((data: any) => {this.applicationsHCS = data;
+    });
+  }
+
+  listSP(){
+    return this.http.post('/test/listSP', {})
+    .subscribe((data: any) => {this.applicationsSP = data;
+    });
   }
 }

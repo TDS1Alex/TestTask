@@ -46,7 +46,7 @@ namespace TestTask.Controllers
         }
 
         [HttpPost("getSP")]
-        public async Task<IEnumerable<ApplicantDto>> Get([FromBody] StatementSPQuery query)
+        public async Task<ApplicantDto> Get([FromBody] StatementSPQuery query)
         {
             return await _mediator.Send(query);
         }

@@ -47,12 +47,12 @@ namespace TestTask
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseSwagger();
-            app.UseSwaggerUI(config =>
-            {
-                config.RoutePrefix = "/swagger";
-                config.SwaggerEndpoint("swagger/v1/swagger.json", "Notes API");
-            });
+            //app.UseSwagger();
+            //app.UseSwaggerUI(config =>
+            //{
+            //    config.RoutePrefix = string.Empty;
+            //    config.SwaggerEndpoint("swagger/v1/swagger.json", "Notes API");
+            //});
 
             if (env.IsDevelopment())
             {

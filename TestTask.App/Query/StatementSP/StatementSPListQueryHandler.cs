@@ -14,9 +14,9 @@ namespace TestTask.App.Query.StatementHCS
 
         public async Task<ListDto<ApplicantDto>> Handle(StatementSPListQuery request, CancellationToken cancellationToken)
         {
-            var statementsHCS = _storage.ApplicationSP.Where(n => n.BankAccountNumber != 0);
+            var statements = _storage.ApplicationSP.Where(n => n.BankAccountNumber != 0);
 
-            var result = statementsHCS.Select(statement => new ApplicantDto()
+            var result = statements.Select(statement => new ApplicantDto()
             {
                 Id = statement.Id,
                 FIOApplicant = statement.FIOApplicant,
