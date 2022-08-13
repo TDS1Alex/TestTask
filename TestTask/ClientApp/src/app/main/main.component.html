@@ -12,28 +12,63 @@
         </li>
     </ul>
 
-    <p>Список заявителей на субсидии на оплату ЖКУ</p>
-    <table class="table" >
+    <p>Список заявителей на субсидии на оплату ЖКУ (Число заявлений: {{applicationsHCS?.count}})</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>№</td>
+                <td>ФИО заявителя</td>
+                <td>Паспортные данные</td>
+                <td>Дата рождения</td>
+                <td>ФИО ребенка заявителя</td>
+                <td>Свидетельство о рождении</td>
+                <td>Дата рождения ребенка</td>
+                <td>Список льгот</td>
+            </tr>
+        </thead>
 
-        <tr>
-            <td>ФИО заявителя</td>
-            <td>Паспортные данные</td>
-            <td>Дата рождения</td>
-            <td>ФИО ребенка заявителя</td>
-            <td>Свидетельство о рождении</td>
-            <td>Дата рождения ребенка</td>
-            <td>Список льгот</td>
-        </tr>
+        <tbody>
+            <tr *ngFor="let app of applicationsHCS?.items">
+                <td>{{app?.id}}</td>
+                <td>{{app?.fioApplicant}}</td>
+                <td>{{app?.passportInfo}}</td>
+                <td>{{app?.dateBirth | date}}</td>
+                <td>{{app?.fioChildOfApplicant}}</td>
+                <td>{{app?.birthCertificate}}</td>
+                <td>{{app?.dateBirthCildOfApplicant | date}}</td>
+                <td>{{app?.availabilityOfBenefits}}</td>
+            </tr>
+        </tbody>
 
-        <tr>
-            <td>{{application?.FIOApplicant}}</td>
-            <td>{{application?.PassportInfo}}</td>
-            <td>{{application?.DateBirth}}</td>
-            <td>{{application?.FIOChildOfApplicant}}</td>
-            <td>{{application?.BirthCertificate}}</td>
-            <td>{{application?.DateBirthCildOfApplicant}}</td>
-            <td>{{application?.AvailabilityOfBenefitsv}}</td>
-        </tr>
+    </table>  
 
-    </table>     
+    <p>Список заявителей на субсидии на оплату ЖКУ (Число заявлений: {{applicationsSP?.count}})</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>№</td>
+                <td>ФИО заявителя</td>
+                <td>Паспортные данные</td>
+                <td>Дата рождения</td>
+                <td>ФИО ребенка заявителя</td>
+                <td>Свидетельство о рождении</td>
+                <td>Дата рождения ребенка</td>
+                <td>Номер счета в банке</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let app of applicationsSP?.items">
+                <td>{{app?.id}}</td>
+                <td>{{app?.fioApplicant}}</td>
+                <td>{{app?.passportInfo}}</td>
+                <td>{{app?.dateBirth | date}}</td>
+                <td>{{app?.fioChildOfApplicant}}</td>
+                <td>{{app?.birthCertificate}}</td>
+                <td>{{app?.dateBirthCildOfApplicant | date}}</td>
+                <td>{{app?.bankAccountNumber}}</td>
+            </tr>
+        </tbody>
+
+    </table>  
 </body>

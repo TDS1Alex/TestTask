@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { DataTablesModule } from 'angular-datatables';
 
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
@@ -20,6 +21,7 @@ import { CreateSpComponent } from './create-sp/create-sp.component';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+
     RouterModule.forRoot([
       { path: "", component: MainComponent },
       { path: "create_hcs", component: CreateHcsComponent },

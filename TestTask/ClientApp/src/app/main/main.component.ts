@@ -10,23 +10,25 @@ import { Application } from './application';
 
 export class MainComponent implements OnInit{
 
-  applications: Application | undefined;
-
+  applicationsHCS: Array<Application[]>;
+  applicationsSP: Array<Application[]>;
+  
   constructor(private http: HttpClient){}
   
-  ngOnInit(): void{
-    this.getHCS();
-  }  
+  ngOnInit(){
+    this.listHCS();
+    this.listSP();
+  }
 
-  getHCS(){
-    return this.http.get('/test/getHCS')
-    .subscribe((data:any) => this.applications = new Application (data.FIOApplicant, data.PassportInfo, 
-      data.DateBirth, data.FIOChildOfApplicant, data.BirthCertificate, data.DateBirthCildOfApplicant, 
-      data.AvailabilityOfBenefitsv, data.BankAccountNumber));
-  } 
+  listHCS(){
+    return this.http.post('/test/listHCS', {})
+    .subscribe((data: any) => {this.applicationsHCS = data;
+    });
+  }
 
   listSP(){
-   return this.http.get('/test/listSP')
-   .subscribe(response =>{console.log(response);})
+    return this.http.post('/test/listSP', {})
+    .subscribe((data: any) => {this.applicationsSP = data;
+    });
   }
 }
